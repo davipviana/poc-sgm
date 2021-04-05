@@ -15,7 +15,7 @@ namespace SASCi.Services
             return s;
         }
 
-        public MedicalExamResponseModel PingComplexModel(MedicalExamInputModel inputModel)
+        /*public MedicalExamResponseModel PingComplexModel(MedicalExamInputModel inputModel)
         {
             Console.WriteLine("Input data. IntProperty: {0}, StringProperty: {1}", inputModel.IntProperty, inputModel.StringProperty);
 
@@ -40,7 +40,7 @@ namespace SASCi.Services
         public int? NullableMethod(bool? arg)
         {
             return null;
-        }
+        }*/
 
         public void XmlMethod(XElement xml)
         {

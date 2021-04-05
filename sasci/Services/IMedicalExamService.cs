@@ -10,7 +10,7 @@ namespace SASCi.Services
         [OperationContract]
         string Ping(string s);
 
-        [OperationContract]
+        /*[OperationContract]
         MedicalExamResponseModel PingComplexModel(MedicalExamInputModel inputModel);
 
         [OperationContract]
@@ -20,7 +20,7 @@ namespace SASCi.Services
         Task<int> AsyncMethod();
 
         [OperationContract]
-        int? NullableMethod(bool? arg);
+        int? NullableMethod(bool? arg);*/
 
         [OperationContract]
         void XmlMethod(System.Xml.Linq.XElement xml);
