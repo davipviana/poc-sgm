@@ -12,17 +12,5 @@ namespace SASCi.Models
 
         [DataMember]
         public string StringProperty { get; set; }
-
-        [DataMember]
-        public List<string> ListProperty { get; set; }
-
-        [DataMember]
-        public TestEnum TestEnum { get; set; }
-    }
-
-    public enum TestEnum
-    {
-        One,
-        Two
     }
 }
