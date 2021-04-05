@@ -15,11 +15,14 @@ jobs:
   build:
     if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./sasci
 
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      working-directory: ${{env.working-directory}}
 
 
   publish:
@@ -46,6 +49,7 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/poc-sgm-sasci:latest
+        working-directory: ${{env.working-directory}}
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
