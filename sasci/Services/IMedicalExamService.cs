@@ -8,9 +8,6 @@ namespace SASCi.Services
     public interface IMedicalExamService
     {
         [OperationContract]
-        string Ping(string s);
-
-        [OperationContract]
-        MedicalExamResponseModel PingComplexModel(MedicalExamInputModel inputModel);
+        string GetExamResult(string examCode);
     }
 }

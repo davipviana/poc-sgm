@@ -9,21 +9,11 @@ namespace SASCi.Services
 {
     public class MedicalExamService : IMedicalExamService
     {
-        public string Ping(string s)
+        public string GetExamResult(string s)
         {
-            Console.WriteLine("Exec new ping method");
-            return s;
-        }
+            Random r = new Random();
 
-        public MedicalExamResponseModel PingComplexModel(MedicalExamInputModel inputModel)
-        {
-            Console.WriteLine("Input data. IntProperty: {0}, StringProperty: {1}", inputModel.IntProperty, inputModel.StringProperty);
-
-            return new MedicalExamResponseModel
-            {
-                FloatProperty = float.MaxValue / 2,
-                StringProperty = inputModel.StringProperty
-            };
+            return $"{s} - {r.Next(0, 100)}%";
         }
     }
 }
