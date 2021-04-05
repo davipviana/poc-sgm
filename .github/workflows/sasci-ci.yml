@@ -26,6 +26,8 @@ jobs:
   publish:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./sasci
 
     steps:
       - uses: actions/checkout@v2
