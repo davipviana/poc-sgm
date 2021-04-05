@@ -43,11 +43,11 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./
+          context: ${{env.working-directory}}
           file: ./sasci/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/poc-sgm-sasci:latest
-          working-directory: ${{env.working-directory}}
+          
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
