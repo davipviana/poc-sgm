@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file sasci/Dockerfile --tag poc-sgm-sasci:$(date +%s)
 
 
   publish:
@@ -43,7 +43,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: ./
-        file: ./Dockerfile
+        file: ./sasci/Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/poc-sgm-sasci:latest
 
