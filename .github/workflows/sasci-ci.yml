@@ -4,11 +4,11 @@ on:
   push:
     branches: [ main ]
     paths:
-    - '/sasci/**'
+    - 'sasci/**'
   pull_request:
     branches: [ main ]
     paths:
-    - '/sasci/**'
+    - 'sasci/**'
 
 jobs:
 
