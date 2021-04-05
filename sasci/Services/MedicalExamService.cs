@@ -11,7 +11,7 @@ namespace SASCi.Services
     {
         public string Ping(string s)
         {
-            Console.WriteLine("Exec ping method");
+            Console.WriteLine("Exec new ping method");
             return s;
         }
 
