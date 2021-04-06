@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CitizenServices.Data
+namespace CitizenServices.Entities.Database
 {
     public class ApplicationDbContext : IdentityDbContext
     {

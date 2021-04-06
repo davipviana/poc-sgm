@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ActiveMQ.Artemis.Client;
 using ActiveMQ.Artemis.Client.Extensions.DependencyInjection;
 using ActiveMQ.Artemis.Client.Extensions.Hosting;
-using CitizenServices.Data;
+using CitizenServices.Entities.Database;
 using CitizenServices.Entities.Messages;
 using CitizenServices.Messaging;
 using CitizenServices.Messaging.Consumer;
@@ -34,7 +34,7 @@ namespace CitizenServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration["DatabaseConnectionString"])
+                options.UseSqlServer(Configuration["DatabaseConnectionString"], b => b.MigrationsAssembly("CitizenServices"))
             );
 
             services.AddDefaultIdentity<IdentityUser>(
