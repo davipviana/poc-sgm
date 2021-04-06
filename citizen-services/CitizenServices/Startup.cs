@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 using ActiveMQ.Artemis.Client;
 using ActiveMQ.Artemis.Client.Extensions.DependencyInjection;
 using ActiveMQ.Artemis.Client.Extensions.Hosting;
+using CitizenServices.Data;
 using CitizenServices.Entities.Messages;
 using CitizenServices.Messaging;
 using CitizenServices.Messaging.Consumer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,9 +33,25 @@ namespace CitizenServices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration["DatabaseConnectionString"])
+            );
+
+            services.AddDefaultIdentity<IdentityUser>(
+                options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddRazorPages();
 
-            services.AddActiveMq("bookstore-cluster", new[] { Endpoint.Create(host: "localhost", port: 5672, Configuration["ActiveMqUser"], Configuration["ActiveMqPassword"]) })
+            services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
+
+            /*services.AddActiveMq("bookstore-cluster", new[] { Endpoint.Create(host: "localhost", port: 5672, Configuration["ActiveMqUser"], Configuration["ActiveMqPassword"]) })
                     .AddTypedConsumer<CalculateTax, CalculateTaxConsumer>(RoutingType.Multicast, nameof(CitizenServices))
                     .EnableAddressDeclaration()
                     .EnableQueueDeclaration()
@@ -39,7 +59,7 @@ namespace CitizenServices
 
 
 
-            services.AddActiveMqHostedService();
+            services.AddActiveMqHostedService();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +68,7 @@ namespace CitizenServices
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -61,6 +82,7 @@ namespace CitizenServices
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

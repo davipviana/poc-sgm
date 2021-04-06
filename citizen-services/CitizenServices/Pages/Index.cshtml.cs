@@ -13,12 +13,12 @@ namespace CitizenServices.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly MessageProducer _messageProducer;
+        // private readonly MessageProducer _messageProducer;
 
-        public IndexModel(ILogger<IndexModel> logger, MessageProducer messageProducer)
+        public IndexModel(ILogger<IndexModel> logger/*, MessageProducer messageProducer*/)
         {
             _logger = logger;
-            _messageProducer = messageProducer;
+            //_messageProducer = messageProducer;
         }
 
         public void OnGet()
