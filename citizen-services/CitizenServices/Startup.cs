@@ -2,6 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ActiveMQ.Artemis.Client;
+using ActiveMQ.Artemis.Client.Extensions.DependencyInjection;
+using ActiveMQ.Artemis.Client.Extensions.Hosting;
+using CitizenServices.Entities.Messages;
+using CitizenServices.Messaging;
+using CitizenServices.Messaging.Consumer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +30,16 @@ namespace CitizenServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddActiveMq("bookstore-cluster", new[] { Endpoint.Create(host: "localhost", port: 5672, Configuration["ActiveMqUser"], Configuration["ActiveMqPassword"]) })
+                    .AddTypedConsumer<CalculateTax, CalculateTaxConsumer>(RoutingType.Multicast, nameof(CitizenServices))
+                    .EnableAddressDeclaration()
+                    .EnableQueueDeclaration()
+                    .AddAnonymousProducer<MessageProducer>();
+
+
+
+            services.AddActiveMqHostedService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
