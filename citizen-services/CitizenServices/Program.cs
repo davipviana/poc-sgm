@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CitizenServices.Entities.Database;
+using CitizenServices.Utils;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,8 @@ namespace CitizenServices
                 {
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     context.Database.Migrate();
+
+                    SeedDatabase.Initialize(services).GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {

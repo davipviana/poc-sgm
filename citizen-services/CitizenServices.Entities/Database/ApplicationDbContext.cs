@@ -13,7 +13,7 @@ namespace CitizenServices.Entities.Database
         {
         }
 
-        public DbSet<CitizenServices.Entities.Database.CitizenProperties> CitizenProperties { get; set; }
-        public DbSet<CitizenServices.Entities.Database.CitizenPropertyTypes> CitizenPropertyTypes { get; set; }
+        public DbSet<CitizenServices.Entities.Database.CitizenProperty> CitizenProperties { get; set; }
+        public DbSet<CitizenServices.Entities.Database.CitizenPropertyType> CitizenPropertyTypes { get; set; }
     }
 }

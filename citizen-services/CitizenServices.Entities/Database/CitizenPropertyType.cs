@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CitizenServices.Entities.Database
 {
-    public class CitizenPropertyTypes
+    public class CitizenPropertyType
     {
         [Key]
         public int CitizenPropertyTypeId { get; set; }
