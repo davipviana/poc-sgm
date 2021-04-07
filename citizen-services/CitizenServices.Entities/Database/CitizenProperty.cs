@@ -11,8 +11,5 @@ namespace CitizenServices.Entities.Database
 
         [StringLength(50)]
         public string CitizenId { get; set; }
-
-        public int CitizenPropertyTypeId { get; set; }
-        public virtual CitizenPropertyType CitizenPropertyType { get; set; }
     }
 }

@@ -19,25 +19,11 @@ namespace CitizenServices.Messaging.Consumer
             double aliquot = 0;
             if (message.ProperyValue <= 500000)
             {
-                if (message.PropertyType == "Residential")
-                {
-                    aliquot = 0.7;
-                }
-                else
-                {
-                    aliquot = 1.3;
-                }
+                aliquot = 0.7;
             }
             else
             {
-                if (message.PropertyType == "Residential")
-                {
-                    aliquot = 0.9;
-                }
-                else
-                {
-                    aliquot = 1.5;
-                }
+                aliquot = 1.5;
             }
 
             var taxValue = message.ProperyValue * aliquot;
