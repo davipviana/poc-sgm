@@ -12,5 +12,8 @@ namespace CitizenServices.Entities.Database
             : base(options)
         {
         }
+
+        public DbSet<CitizenServices.Entities.Database.CitizenProperties> CitizenProperties { get; set; }
+        public DbSet<CitizenServices.Entities.Database.CitizenPropertyTypes> CitizenPropertyTypes { get; set; }
     }
 }
