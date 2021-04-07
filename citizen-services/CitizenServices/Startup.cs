@@ -51,15 +51,13 @@ namespace CitizenServices
                     .Build();
             });
 
-            /*services.AddActiveMq("bookstore-cluster", new[] { Endpoint.Create(host: "localhost", port: 5672, Configuration["ActiveMqUser"], Configuration["ActiveMqPassword"]) })
+            services.AddActiveMq("bookstore-cluster", new[] { Endpoint.Create(host: "localhost", port: 5672, Configuration["ActiveMqUser"], Configuration["ActiveMqPassword"]) })
                     .AddTypedConsumer<CalculateTax, CalculateTaxConsumer>(RoutingType.Multicast, nameof(CitizenServices))
                     .EnableAddressDeclaration()
                     .EnableQueueDeclaration()
                     .AddAnonymousProducer<MessageProducer>();
 
-
-
-            services.AddActiveMqHostedService();*/
+            services.AddActiveMqHostedService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

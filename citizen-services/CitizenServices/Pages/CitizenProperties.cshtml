@@ -19,6 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.CitizenProperties[0].TaxValue)
             </th>
+            <th>Calculation Status</th>
             <th></th>
         </tr>
     </thead>
@@ -33,9 +34,13 @@
                     @Html.DisplayFor(modelItem => item.TaxValue)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.CitizenPropertyId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.CitizenPropertyId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.CitizenPropertyId">Delete</a>
+                    @Html.DisplayFor(modelItem => item.CalculationStatus)
+                </td>
+                <td>
+                    <form method="post">
+                        <input asp-for="CitizenPropertyId" type="hidden" value="@item.CitizenPropertyId" />
+                        <input type="submit" value="Calculate Tax" class="btn btn-primary" />
+                    </form>
                 </td>
             </tr>
         }

@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CitizenServices.Entities.Database;
 using CitizenServices.Entities.Messages;
+using Microsoft.EntityFrameworkCore;
 
 namespace CitizenServices.Messaging.Consumer
 {
@@ -14,10 +15,13 @@ namespace CitizenServices.Messaging.Consumer
             _dbContext = dbContext;
         }
 
-        public Task ConsumeAsync(CalculateTax message, CancellationToken cancellationToken)
+        public async Task ConsumeAsync(CalculateTax message, CancellationToken cancellationToken)
         {
+            Thread.Sleep(1000);
             double aliquot = 0;
-            if (message.ProperyValue <= 500000)
+            var property = await _dbContext.CitizenProperties.FirstAsync(cp => cp.CitizenPropertyId == message.PropertyId);
+
+            if (property.MarketValue <= 500000)
             {
                 aliquot = 0.7;
             }
@@ -26,9 +30,10 @@ namespace CitizenServices.Messaging.Consumer
                 aliquot = 1.5;
             }
 
-            var taxValue = message.ProperyValue * aliquot;
+            var taxValue = property.MarketValue * aliquot;
 
-            return Task.CompletedTask;
+            property.TaxValue = taxValue;
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
