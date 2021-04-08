@@ -57,13 +57,13 @@ namespace CitizenServices.Utils
                 {
                     Description = "Casa principal",
                     CitizenId = userId,
-                    MarketValue = 500000
+                    MarketValue = 510458
                 },
                 new CitizenProperty
                 {
                     Description = "Casa do lago",
                     CitizenId = userId,
-                    MarketValue = 2000000
+                    MarketValue = 2004213
                 },
                 new CitizenProperty
                 {
@@ -75,7 +75,7 @@ namespace CitizenServices.Utils
                 {
                     Description = "Chácara em condomínio fechado",
                     CitizenId = userId,
-                    MarketValue = 8000000
+                    MarketValue = 8458219
                 }
              );
             context.SaveChanges();

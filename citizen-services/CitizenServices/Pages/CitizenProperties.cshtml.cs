@@ -37,18 +37,7 @@ namespace CitizenServices.Pages
         {
             var userId = _userManager.GetUserId(User);
 
-            var citizenProperties = await _dbContext.CitizenProperties
-                .Where(cp => cp.CitizenId == userId)
-                .ToListAsync();
-
-            CitizenProperties = citizenProperties.Select(cp => new CitizenPropertyModel
-            {
-                CitizenPropertyId = cp.CitizenPropertyId,
-                CitizenId = cp.CitizenId,
-                MarketValue = cp.MarketValue,
-                TaxValue = cp.TaxValue == -1 ? null : cp.TaxValue,
-                CalculationStatus = GetCalculationStatus(cp.TaxValue)
-            }).ToList();
+            await LoadCitizenProperties(userId);
         }
 
         public async Task<IActionResult> OnPost()
@@ -64,19 +53,26 @@ namespace CitizenServices.Pages
             };
 
             await _messageProducer.PublishAsync(@event);
+            await LoadCitizenProperties(userId);
 
+            return RedirectToPage("./CitizenProperties");
+        }
+
+        private async Task LoadCitizenProperties(string userId)
+        {
             var citizenProperties = await _dbContext.CitizenProperties.Where(cp => cp.CitizenId == userId).ToListAsync();
 
             CitizenProperties = citizenProperties.Select(cp => new CitizenPropertyModel
             {
                 CitizenPropertyId = cp.CitizenPropertyId,
+                Description = cp.Description,
                 CitizenId = cp.CitizenId,
                 MarketValue = cp.MarketValue,
+                FormattedMarketValue = $"R$ {cp.MarketValue.ToString("0.00")}",
                 TaxValue = cp.TaxValue == -1 ? null : cp.TaxValue,
+                FormattedTaxValue = cp.TaxValue.HasValue && cp.TaxValue != -1 ? $"R$ {cp.TaxValue?.ToString("0.00")}" : "",
                 CalculationStatus = GetCalculationStatus(cp.TaxValue)
             }).ToList();
-
-            return RedirectToPage("./CitizenProperties");
         }
 
         private string GetCalculationStatus(double? taxValue)
@@ -98,6 +94,8 @@ namespace CitizenServices.Pages
         public class CitizenPropertyModel : CitizenProperty
         {
             public string CalculationStatus { get; set; }
+            public string FormattedMarketValue { get; set; }
+            public string FormattedTaxValue { get; set; }
         }
     }
 }
