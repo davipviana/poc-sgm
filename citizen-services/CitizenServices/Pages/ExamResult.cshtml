@@ -5,13 +5,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Exam Result</h1>
+<h1>Resultados de Exames</h1>
 
 <form>
     <p>
-        Exam: <input type="text" asp-for="Exam" />
-        <input type="submit" value="Filter" />
+        Exame: <input type="text" asp-for="Exam" />
+        <input type="submit" value="Obter Resultado" />
     </p>
 </form>
-
-<p>Result: @Model.ExamResult</p>
+@if (!string.IsNullOrEmpty(Model.ExamResult))
+{
+    <p>Resultado: @Model.ExamResult</p>
+}

@@ -46,7 +46,7 @@ namespace CitizenServices.Pages
                 CitizenPropertyId = cp.CitizenPropertyId,
                 CitizenId = cp.CitizenId,
                 MarketValue = cp.MarketValue,
-                TaxValue = cp.TaxValue,
+                TaxValue = cp.TaxValue == -1 ? 0 : cp.TaxValue,
                 CalculationStatus = GetCalculationStatus(cp.TaxValue)
             }).ToList();
         }
@@ -72,7 +72,7 @@ namespace CitizenServices.Pages
                 CitizenPropertyId = cp.CitizenPropertyId,
                 CitizenId = cp.CitizenId,
                 MarketValue = cp.MarketValue,
-                TaxValue = cp.TaxValue,
+                TaxValue = cp.TaxValue == -1 ? 0 : cp.TaxValue,
                 CalculationStatus = GetCalculationStatus(cp.TaxValue)
             }).ToList();
 
