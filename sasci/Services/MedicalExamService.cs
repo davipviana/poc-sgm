@@ -13,7 +13,7 @@ namespace SASCi.Services
         {
             Random r = new Random();
 
-            return $"{s} - {r.Next(0, 100)}%";
+            return $"{r.Next(0, 100)}%";
         }
     }
 }
