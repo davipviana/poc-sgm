@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag poc-sgm-apachemq:$(date +%s) --build-arg ACTIVE_MQ_USER=${{ secrets.ACTIVE_MQ_USER }} --build-arg ACTIVE_MQ_PASSWORD=${{ secrets.ACTIVE_MQ_PASSWORD }}
+        run: docker build . --file Dockerfile --tag poc-sgm-apachemq:$(date +%s) --build-arg ACTIVE_MQ_USER=${{ secrets.ACTIVE_MQ_USER }} --build-arg ACTIVE_MQ_PASSWORD=${{ secrets.ACTIVE_MQ_PASSWORD }} --no-cache
         working-directory: ${{env.working-directory}}
 
   publish:
