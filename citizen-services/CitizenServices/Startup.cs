@@ -52,7 +52,7 @@ namespace CitizenServices
                     .Build();
             });
 
-            services.AddActiveMq("bookstore-cluster", new[] { Endpoint.Create(host: "localhost", port: 5672, Configuration["ActiveMqUser"], Configuration["ActiveMqPassword"]) })
+            services.AddActiveMq("bookstore-cluster", new[] { Endpoint.Create(host: Configuration["ActiveMqUrl"], port: 5672, Configuration["ActiveMqUser"], Configuration["ActiveMqPassword"]) })
                     .AddTypedConsumer<CalculateTax, CalculateTaxConsumer>(RoutingType.Multicast, nameof(CitizenServices))
                     .EnableAddressDeclaration()
                     .EnableQueueDeclaration()
