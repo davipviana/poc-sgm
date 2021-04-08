@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag poc-sgm-apachemq:$(date +%s)
+        run: docker build . --file Dockerfile --tag poc-sgm-apachemq:$(date +%s) --build-arg ACTIVE_MQ_USER=${{ secrets.ACTIVE_MQ_USER }} --build-arg ACTIVE_MQ_PASSWORD=${{ secrets.ACTIVE_MQ_PASSWORD }}
         working-directory: ${{env.working-directory}}
 
   publish:
@@ -49,6 +49,7 @@ jobs:
           file: ./apache-mq/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/poc-sgm-apachemq:latest
+          build-args: ACTIVE_MQ_USER=${{ secrets.ACTIVE_MQ_USER }}",ACTIVE_MQ_PASSWORD=${{ secrets.ACTIVE_MQ_PASSWORD }}"
           
 
       - name: Image digest
