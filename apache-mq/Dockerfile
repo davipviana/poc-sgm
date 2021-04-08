@@ -1,4 +1,7 @@
 # ActiveMQ Artemis
+ARG ACTIVE_MQ_USER
+ARG ACTIVE_MQ_PASSWORD
+
 FROM alpine:latest
 
 RUN mkdir /artemis
@@ -15,7 +18,7 @@ RUN tar -xvf ./artemis.tar; \
     ln -s /artemis/apache-artemis-2.17.0/ ./current
 #WORKDIR /artemis/current
 ENV JAVA_HOME /artemis/zulu14.28.21-ca-jre14.0.1-linux_musl_x64/
-RUN /artemis/current/bin/artemis create --user ${ACTIVE_MQ_USER} --password ${ACTIVE_MQ_PASSWORD} --http-host 0.0.0.0 --require-login --relax-jolokia mike
+RUN /artemis/current/bin/artemis create --user $ACTIVE_MQ_USER --password $ACTIVE_MQ_PASSWORD --http-host 0.0.0.0 --require-login --relax-jolokia mike
 
 # Web Server
 EXPOSE 8161 \
