@@ -1,8 +1,7 @@
 # ActiveMQ Artemis
+FROM alpine:latest
 ARG ACTIVE_MQ_USER
 ARG ACTIVE_MQ_PASSWORD
-
-FROM alpine:latest
 
 RUN mkdir /artemis
 WORKDIR /artemis
