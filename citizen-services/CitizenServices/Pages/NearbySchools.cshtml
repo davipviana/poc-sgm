@@ -1,0 +1,30 @@
+@page
+@model CitizenServices.Pages.NearbySchoolsModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Escolas Próximas</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Idades</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Schools)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcceptedAges)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

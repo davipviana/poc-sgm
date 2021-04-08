@@ -1,0 +1,19 @@
+@page
+@model CitizenServices.Pages.ExamResultModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Resultados de Exames</h1>
+
+<form>
+    <p>
+        Exame: <input type="text" asp-for="Exam" />
+        <input type="submit" value="Obter Resultado" />
+    </p>
+</form>
+@if (!string.IsNullOrEmpty(Model.ExamResult))
+{
+    <p>Resultado: @Model.ExamResult</p>
+}

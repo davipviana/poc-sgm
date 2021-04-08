@@ -1,0 +1,55 @@
+@page
+@model CitizenServices.Pages.CitizenPropertiesModel
+
+@{
+    ViewData["Title"] = "Meus Imóveis";
+}
+
+<h1>Meus Imóveis</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Valor de Mercado
+            </th>
+            <th>
+                Valor do IPTU/ ITR
+            </th>
+            <th>Situação do cálculo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CitizenProperties)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CitizenPropertyId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormattedMarketValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormattedTaxValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CalculationStatus)
+                </td>
+                <td>
+                    <form method="post">
+                        <input asp-for="CitizenPropertyId" type="hidden" value="@item.CitizenPropertyId" />
+                        <input type="submit" value="Calcular Imposto" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

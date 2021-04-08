@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ArtemisNetClient" Version="2.0.0" />
+    <PackageReference Include="ArtemisNetClient.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="ArtemisNetClient.Extensions.Hosting" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CitizenServices.Entities\CitizenServices.Entities.csproj" />
+    <ProjectReference Include="..\CitizenServices.Messaging\CitizenServices.Messaging.csproj" />
+    <ProjectReference Include="..\CitizenServices.Services\CitizenServices.Services.csproj" />
+  </ItemGroup>
+
+</Project>
