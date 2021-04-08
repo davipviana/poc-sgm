@@ -28,7 +28,10 @@ namespace CitizenServices
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     context.Database.Migrate();
 
-                    SeedDatabase.Initialize(services).GetAwaiter().GetResult();
+                    var config = host.Services.GetRequiredService<IConfiguration>();
+                    var testUserPw = config["SeedUserPW"];
+
+                    SeedDatabase.Initialize(services, testUserPw).GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {

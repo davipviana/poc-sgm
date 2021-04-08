@@ -17,7 +17,7 @@ namespace CitizenServices.Messaging.Consumer
 
         public async Task ConsumeAsync(CalculateTax message, CancellationToken cancellationToken)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(10000);
             double aliquot = 0;
             var property = await _dbContext.CitizenProperties.FirstAsync(cp => cp.CitizenPropertyId == message.PropertyId);
 

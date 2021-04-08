@@ -46,7 +46,7 @@ namespace CitizenServices.Pages
                 CitizenPropertyId = cp.CitizenPropertyId,
                 CitizenId = cp.CitizenId,
                 MarketValue = cp.MarketValue,
-                TaxValue = cp.TaxValue == -1 ? 0 : cp.TaxValue,
+                TaxValue = cp.TaxValue == -1 ? null : cp.TaxValue,
                 CalculationStatus = GetCalculationStatus(cp.TaxValue)
             }).ToList();
         }
@@ -72,7 +72,7 @@ namespace CitizenServices.Pages
                 CitizenPropertyId = cp.CitizenPropertyId,
                 CitizenId = cp.CitizenId,
                 MarketValue = cp.MarketValue,
-                TaxValue = cp.TaxValue == -1 ? 0 : cp.TaxValue,
+                TaxValue = cp.TaxValue == -1 ? null : cp.TaxValue,
                 CalculationStatus = GetCalculationStatus(cp.TaxValue)
             }).ToList();
 
@@ -87,7 +87,7 @@ namespace CitizenServices.Pages
             }
             else if (taxValue == -1)
             {
-                return "Sendo calculado, atualize a página";
+                return "Sendo calculado, volte em alguns segundos";
             }
             else
             {
