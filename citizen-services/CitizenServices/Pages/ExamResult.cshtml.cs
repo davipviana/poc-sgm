@@ -15,24 +15,32 @@ using Microsoft.Extensions.Logging;
 
 namespace CitizenServices.Pages
 {
-    public class NearbySchoolsModel : PageModel
+    public class ExamResultModel : PageModel
     {
-        private readonly ILogger<NearbySchoolsModel> _logger;
-        private readonly ISaemService _saemService;
+        private readonly ILogger<ExamResultModel> _logger;
+        private readonly ISasciService _sasciService;
 
-        public IList<School> Schools { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string Exam { get; set; }
 
-        public NearbySchoolsModel(ILogger<NearbySchoolsModel> logger, ISaemService saemService)
+        public string ExamResult { get; set; }
+
+        public ExamResultModel(ILogger<ExamResultModel> logger, ISasciService sasciService)
         {
             _logger = logger;
-            _saemService = saemService;
+            _sasciService = sasciService;
         }
 
         public async Task OnGetAsync()
         {
-            var schools = await _saemService.GetNearbySchoolsAsync();
-
-            Schools = schools.ToList();
+            if (!string.IsNullOrEmpty(Exam))
+            {
+                ExamResult = await _sasciService.GetExamResultAsync(Exam);
+            }
+            else
+            {
+                ExamResult = "";
+            }
         }
     }
 }

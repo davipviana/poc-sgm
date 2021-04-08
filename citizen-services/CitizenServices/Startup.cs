@@ -65,6 +65,12 @@ namespace CitizenServices
                 client.BaseAddress = new Uri(Configuration["SaemUrl"]);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
             });
+
+            services.AddHttpClient<ISasciService, SasciService>((serviceProvider, client) =>
+            {
+                client.BaseAddress = new Uri(Configuration["SasciUrl"]);
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
