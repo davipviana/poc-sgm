@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CitizenServices.Entities\CitizenServices.Entities.csproj" />
     <ProjectReference Include="..\CitizenServices.Messaging\CitizenServices.Messaging.csproj" />
+    <ProjectReference Include="..\CitizenServices.Services\CitizenServices.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,6 +9,7 @@ using CitizenServices.Entities.Database;
 using CitizenServices.Entities.Messages;
 using CitizenServices.Messaging;
 using CitizenServices.Messaging.Consumer;
+using CitizenServices.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -58,6 +59,12 @@ namespace CitizenServices
                     .AddAnonymousProducer<MessageProducer>();
 
             services.AddActiveMqHostedService();
+
+            services.AddHttpClient<ISaemService, SaemService>((serviceProvider, client) =>
+            {
+                client.BaseAddress = new Uri(Configuration["SaemUrl"]);
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
