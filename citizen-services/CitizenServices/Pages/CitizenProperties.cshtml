@@ -7,30 +7,30 @@
 
 <h1>Meus Imóveis</h1>
 
-<table class="table">
+<table class="table table-responsive">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>
+            <th scope="col">ID</th>
+            <th scope="col">
                 Descrição
             </th>
-            <th>
+            <th scope="col">
                 Valor de Mercado
             </th>
-            <th>
+            <th scope="col">
                 Valor do IPTU/ ITR
             </th>
-            <th>Situação do cálculo</th>
-            <th></th>
+            <th scope="col">Situação do cálculo</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.CitizenProperties)
         {
             <tr>
-                <td>
+                <th scope="row">
                     @Html.DisplayFor(modelItem => item.CitizenPropertyId)
-                </td>
+                </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
