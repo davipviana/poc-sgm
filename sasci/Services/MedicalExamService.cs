@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using SASCi.Models;
 
 namespace SASCi.Services
 {
@@ -13,7 +8,7 @@ namespace SASCi.Services
         {
             Random r = new Random();
 
-            return $"{r.Next(0, 100)}%";
+            return $"{r.Next(0, 100)}";
         }
     }
 }
